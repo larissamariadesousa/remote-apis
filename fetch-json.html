@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Larissa Maria - Remote APIs</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>Remote APIs Dashboard</h1>
+<p>Fetching data from multiple APIs</p>
+
+</header>
+
+<section class="controls">
+
+<div class="control-box">
+
+<h2>Countries</h2>
+
+<label for="regionSelect">Region</label>
+<select id="regionSelect" title="Select a region">
+<option value="europe">Europe</option>
+<option value="asia">Asia</option>
+<option value="africa">Africa</option>
+<option value="americas">Americas</option>
+</select>
+
+<button id="countriesBtn">Fetch Countries</button>
+
+</div>
+
+<div class="control-box">
+
+<h2>Users</h2>
+
+<button id="usersBtn">Fetch Users</button>
+
+</div>
+
+<div class="control-box">
+
+<h2>Rick & Morty Characters</h2>
+
+<input type="text" id="characterInput" placeholder="Search character">
+
+<button id="rickBtn">Search Character</button>
+
+</div>
+
+</section>
+
+<section id="results" class="grid"></section>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

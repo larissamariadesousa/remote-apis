@@ -8,6 +8,8 @@ async function fetchCountries(){
 
 clearResults()
 
+results.innerHTML = "<p>Loading countries...</p>"
+
 const region = document.getElementById("regionSelect").value
 
 try{
@@ -20,6 +22,8 @@ throw new Error("Failed to fetch countries")
 
 const data = await response.json()
 
+clearResults()
+
 data.forEach(country =>{
 
 const card = document.createElement("div")
@@ -27,9 +31,9 @@ card.className="card"
 
 card.innerHTML=`
 
-<img src="${country.flags.png}">
+<img src="${country.flags.png}" alt="Flag of ${country.name.common}">
 <h3>${country.name.common}</h3>
-<p>Population: ${country.population}</p>
+<p>Population: ${country.population.toLocaleString()}</p>
 
 `
 
@@ -43,7 +47,7 @@ catch(error){
 
 console.error(error)
 
-results.innerHTML="<p>Error loading countries</p>"
+results.innerHTML="<p>⚠️ Error loading countries. Please try again.</p>"
 
 }
 
@@ -52,6 +56,8 @@ results.innerHTML="<p>Error loading countries</p>"
 async function fetchUsers(){
 
 clearResults()
+
+results.innerHTML = "<p>Loading users...</p>"
 
 try{
 
@@ -63,6 +69,8 @@ throw new Error("Failed to fetch users")
 
 const users = await response.json()
 
+clearResults()
+
 users.forEach(user =>{
 
 const card = document.createElement("div")
@@ -71,8 +79,8 @@ card.className="card"
 card.innerHTML=`
 
 <h3>${user.name}</h3>
-<p>Email: ${user.email}</p>
-<p>City: ${user.address.city}</p>
+<p><strong>Email:</strong> ${user.email}</p>
+<p><strong>City:</strong> ${user.address.city}</p>
 
 `
 
@@ -86,7 +94,7 @@ catch(error){
 
 console.error(error)
 
-results.innerHTML="<p>Error loading users</p>"
+results.innerHTML="<p>⚠️ Error loading users. Please try again.</p>"
 
 }
 
@@ -95,6 +103,8 @@ results.innerHTML="<p>Error loading users</p>"
 async function fetchCharacters(){
 
 clearResults()
+
+results.innerHTML = "<p>Loading characters...</p>"
 
 const name = document.getElementById("characterInput").value
 
@@ -108,6 +118,8 @@ throw new Error("Character not found")
 
 const data = await response.json()
 
+clearResults()
+
 data.results.forEach(character =>{
 
 const card = document.createElement("div")
@@ -115,7 +127,7 @@ card.className="card"
 
 card.innerHTML=`
 
-<img src="${character.image}">
+<img src="${character.image}" alt="${character.name}">
 <h3>${character.name}</h3>
 <p>Status: ${character.status}</p>
 
@@ -131,14 +143,12 @@ catch(error){
 
 console.error(error)
 
-results.innerHTML="<p>Error loading characters</p>"
+results.innerHTML="<p>⚠️ Character not found. Try another name.</p>"
 
 }
 
 }
 
 document.getElementById("countriesBtn").addEventListener("click", fetchCountries)
-
 document.getElementById("usersBtn").addEventListener("click", fetchUsers)
-
 document.getElementById("rickBtn").addEventListener("click", fetchCharacters)
